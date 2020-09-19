@@ -1,3 +1,7 @@
+/* JQUERY - RANDOM QUOTE MACHINE */
+
+//----QUOTE SAMPLES----//
+
 var $quotes = [
   {
     quote: "We are dying, we are dying, piecemeal our bodies are dying and our strength leaves us, and our soul cowers naked in the dark rain over the flood, cowering in the last branches of the tree of our life.",
@@ -45,10 +49,15 @@ var $quotes = [
   }
 ];
 
+//----EVENTS----//
+
  $(document).ready(function() {
 
-   getQuote($quotes.length);
+  // On document load, fetch a quote
+   getQuote($quotes.length); 
 
+   // On button click, fetch a new quote
+   // Fade-in animate the components
    $("#new-quote").click(function() { 
       $("#text").fadeOut();
       $("#author").fadeOut();
@@ -61,6 +70,9 @@ var $quotes = [
    }); 
  });
 
+ //----FUNCTIONS----//
+
+ // Fetch a new random quote
  function getQuote(size) {
     $("#text").empty();
     $("#author").empty();
@@ -71,10 +83,18 @@ var $quotes = [
 
     $("#text").append($chosen.quote);
     $("#author").append($chosen.author);
+
+    // Share to Twitter - API
     $("#tweet-quote").prop('href', "https://twitter.com/intent/tweet?text="+ $chosen.quote);
  }
 
- 
+ // Get a random integer between provided minimum and maximum values
  function getRndInteger(min, max) {
+    // Floor is an integer value less or equal to the provided numerical value
+    // Random returns a random numerical value between 0 and 1
+    
+    // Multiplied with a difference between minimum and maximum, it will give a value that
+    // will truly fall within the provided range (in this case, between 0 and array size)
     return Math.floor(Math.random() * (max - min) ) + min;
 }
+

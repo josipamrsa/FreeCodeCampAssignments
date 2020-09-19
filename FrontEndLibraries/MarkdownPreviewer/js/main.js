@@ -1,5 +1,8 @@
+//----REACTJS - MARKDOWN PREVIEWER----//
+
 marked.setOptions({ breaks: true }); // Allows line breaks
 
+//----DEFAULT DATA----//
 const previewText = ` # This is Heading 1  
 ## This is Heading 2  
 [This is a link](https://www.freecodecamp.org/)  
@@ -25,7 +28,10 @@ function anotherExample(firstLine, lastLine) {
 And alas, here's some **bold** text
 `;
 
+//----REACT JSX----//
+
 const Editor = (props) => {
+    // pass props values and events to editor element
     return (
         <textarea id="editor" 
             value={props.text}
@@ -36,11 +42,15 @@ const Editor = (props) => {
 }
 
 const Preview = (props) => {    
+     // dangerouslySetInnerHTML attribute is for HTML parsing 
+     // marked() parses input and applies GitHub-flavoured markdown 
     return (
         <div id="preview" 
-            dangerouslySetInnerHTML={{__html: marked(props.text)}} /> // for HTML string parsing  
+            dangerouslySetInnerHTML={{__html: marked(props.text)}} /> 
     );
 }
+
+//----CUSTOM REACT COMPONENTS----//
 
 class MarkdownPreview extends React.Component {
     constructor(props) {
@@ -49,15 +59,18 @@ class MarkdownPreview extends React.Component {
         this.updateMarkedHandler = this.updateMarkedHandler.bind(this);
     }
 
+    // Update state (text) as user is typing
     updateMarkedHandler = (event) => {
         this.setState({text: event.target.value});
     }
 
+    // Render JSX components within this component
     render() {
         return (
             <div>
                 <h1>Markdown Previewer</h1>
                 <h3>Type into editor: </h3>
+                {/* Components with passed props */}
                 <Editor text={this.state.text} onChange={this.updateMarkedHandler} />
                 <Preview text = {this.state.text} />                              
             </div>           
@@ -65,6 +78,7 @@ class MarkdownPreview extends React.Component {
     }
   }
 
+  // Render components to HTML page wrapper element
   ReactDOM.render(<MarkdownPreview />, document.getElementById('wrapper-div'));
 
   

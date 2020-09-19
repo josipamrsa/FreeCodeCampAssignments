@@ -1,11 +1,11 @@
-.div-wrapper {
-    width: 45%;
-    padding: 3%;
-    border-radius: 15px;
-     
-}
-
 .main {
     background-image: url("https://source.unsplash.com/random");
     background-size: cover;
 }
+
+.div-wrapper {
+    width: 45%;
+    padding: 3%;
+    border-radius: 15px;
+}
+

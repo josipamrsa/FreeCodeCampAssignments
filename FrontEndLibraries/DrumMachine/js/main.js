@@ -1,7 +1,15 @@
+//----JQUERY - DRUM MACHINE----//
+
+//----EVENTS----//
+
 $(document).ready(function() {
 
+    //----DATA----//
+
+    // Button names array
     var $buttonNames = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
 
+    // Keyboard codes to corresponding symbol
     var $keyCodes = {
         81 : "Q",
         87 : "W",
@@ -23,6 +31,7 @@ $(document).ready(function() {
         99 : "c"
     }
 
+    // Buttons with corresponding sounds
     var $buttonContent = {
         "Q" : "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
         "W" : "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
@@ -35,6 +44,11 @@ $(document).ready(function() {
         "C" : "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3",  
     }
 
+    // An object can be iterated through with forEach through keys or values
+    // If a button is fourth in row, a page break is inserted, so that each
+    // row has exactly three buttons
+
+    // After that, a new button is added to corresponding element on page
     Object.keys($buttonContent).forEach($key => {   
         if (($buttonNames.indexOf($key)) % 3 == 0) 
             $("#drum-pads").append("<br />");
@@ -43,47 +57,54 @@ $(document).ready(function() {
         $("#drum-pads").append($button);
     });
   
+    // On drum-pad click play the bound audio
     $(".drum-pad").click(function() {
         var $sounds = document.getElementsByTagName('audio');
         var $id = this.innerText.split("-");
-
         stopAndPlay($sounds, $id);
     });   
 
-    $(document).keypress(function (e) {
-        
+    // On key press play the bound audio
+    $(document).keypress(function (e) {  
         if (e.keyCode in $keyCodes)
             $("#button-"+$keyCodes[e.keyCode].toUpperCase()).click();   
     });
 });
 
-//----Functions----//
+//----FUNCTIONS----//
 
+// Play corresponding audio track
 function stopAndPlay($sounds, $id) {
+    // Pause all currently playing sounds and set it to start
     Object.values($sounds).forEach($sound => {
         $sound.pause();
         $sound.currentTime = 0;
     }); 
     
+    // Show description (name) of active track and play audio
     document.getElementById("display").innerText = document.getElementById($id).title;
     document.getElementById($id).play();
 }
 
+// Append button elements to designated area
 function appendButtons(name, audio) {
+    // Create new elements and set attributes
     var $button = document.createElement("button");
     var $audioContent = document.createElement("audio");
 
+    // Button attributes
     $button.className = "btn btn-primary drum-pad";
     $button.innerText = name;
     $button.id = "button-" + name;
 
+    // Audio content attributes
     $audioContent.id = name;
     $audioContent.src = audio;
     $audioContent.className = "clip";
     $audioContent.type = "audio/mp3";
     $audioContent.title = audio.split("/")[audio.split("/").length - 1];
 
+    // Append and return
     $button.appendChild($audioContent);
-    
     return $button;
 }
