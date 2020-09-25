@@ -1,0 +1,86 @@
+body {
+    background: linear-gradient(90deg, #FFCCCC, #CCFFFF);
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #222222; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2f2f2f; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+.container-fluid {
+    margin-top: 8%;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    background-color: #111111;
+    border: 15px solid #111111;
+    box-shadow: 0 0 5px #666;
+}
+ 
+button {
+    font-size: 0.5cm;
+    padding: 3%;
+    border: 1px solid #aeaeae;
+    background-color: silver;
+    color: #111111;
+    text-shadow: 1px 1px 2px #999999;
+    font-family: monospace;
+}
+
+#display {
+    background: #222222;
+    padding: 25px 15px 5px 15px;
+    color: white;
+    font-size: 0.9cm;
+    font-family: monospace;
+    text-align: right;
+    overflow-x: auto;
+    
+}
+
+#preview {
+    background-color: #151515;
+    padding: 15px 15px 5px 15px;
+    color: gray;
+    font-size: 0.5cm;
+    font-family: monospace;
+    text-align: right;
+    overflow-x: auto;
+    font-weight: 400;
+}
+
+.op {
+    background-color: #666666;
+    border: 1px solid #545454;
+    color: white;
+    text-shadow: 1px 1px 2px #333333;
+}
+
+.dot, .ac {
+    background-color: #444444;
+    border: 1px solid #353535;
+    color: white; 
+    text-shadow: 1px 1px 2px #222222;
+}
+
+.equal {
+    background-color: #222222;
+    border: 1px solid #151515;
+    text-shadow: 1px 1px 2px black;
+}
